@@ -12,7 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val intenFilter = IntentFilter(Intent.ACTION_BATTERY_LOW)
+        val intenFilter = IntentFilter().apply {
+            addAction(Intent.ACTION_BATTERY_LOW)
+            addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+        }
         registerReceiver(receiver, intenFilter)
     }
 
