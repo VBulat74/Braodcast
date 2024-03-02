@@ -7,11 +7,20 @@ import android.widget.Toast
 
 class MyReceiver : BroadcastReceiver() {
 
-    override fun onReceive(p0 : Context?, p1 : Intent?) {
+    override fun onReceive(p0: Context?, p1: Intent?) {
 
         when (p1?.action) {
 
-            ACTION_CLICKED ->{
+            "loaded" -> {
+                val percent : Int = p1.getIntExtra("percent", 0)
+                Toast.makeText(
+                    p0,
+                    "loaded: ($percent)",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            ACTION_CLICKED -> {
                 val count: Int = p1.getIntExtra(EXTRA_COUNT, 0)
                 Toast.makeText(
                     p0,
@@ -39,7 +48,7 @@ class MyReceiver : BroadcastReceiver() {
         }
     }
 
-    companion object{
+    companion object {
 
         const val ACTION_CLICKED = "clicked"
         const val EXTRA_COUNT = "count"
